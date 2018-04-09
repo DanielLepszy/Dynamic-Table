@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,14 +9,16 @@
     <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
     <script src="js/main.js"></script>
 </head>
+
+
 <body class="dogs-app">
     <h1 class="main-title">Dogs</h1>
     <table class="fixed-table" id="dogsContainer">
         <thead class="fixed-table_head">
             <tr>
                 <th>Name</th>
-                <!-- <th>Age (in months)</th> -->
-                <!-- <th>Age (in years)</th> -->
+                <th>Age (in months)</th>
+                <th>Age (in years)</th>
                 <th>Race</th>
             </tr>
         </thead>
@@ -25,15 +28,18 @@
         <tfoot>
             <tr>
                 <td></td>
-                <td><button type="button" onclick="onAddDogButtonClick(event)">Add a dog</button></td>
+                <td>
+                    <button type="button" onclick="onAddDogButtonClick(event)">Add a dog</button>
+                </td>
             </tr>
         </tfoot>
     </table>
     <div class="dog-image-container">
-        
+
     </div>
 </body>
 <script>
     run();
 </script>
+
 </html>

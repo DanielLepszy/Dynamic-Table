@@ -1,10 +1,22 @@
 .dogs-app {
     font-family: 'Courier New', Courier, monospace;
+    display: flex;
+    flex-flow: column;
 }
-/*
+
 .main-title {
-    
+    align-self: center;
 }
+
 .fixed-table {
+    max-width: 720px;
+    align-self: center;
 }
-*/
+
+.fixed-table tr:nth-child(even) {
+    background-color: violet;
+}
+
+.fixed-table tr:nth-child(odd) {
+    background-color: #ffe4e1;
+}
