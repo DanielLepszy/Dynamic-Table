@@ -26,7 +26,7 @@ Some data is missing.
     * table rows should be alternatly coloured (ie, first -rose, second - violet, third - rose, ...)
     * table and header should be centered
     * if you need an classes to be added please follow naming convention
-* if value is empty or missing user should just see empty space ?????
+* if value is empty or missing user should just see empty space
 
 ### Mainpulate data ###
 

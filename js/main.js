@@ -1,19 +1,38 @@
 const parseData = (data) => {
     return data.map(dog => dog);
 }
+renderAgeLabel = (age) => {
+    if (age === null || age === undefined || age === "") {
+        return " elo";
+    }
+    return age;
+}
+renderNameLabel = (dog) => {
+    if (dogList.name === null || dogList.name === undefined || dogList.name === "") {
+
+        return "";
+    } else if (dogList.familyName === null || dogList.familyName === undefined || dogList.familyName === "") {
+        return "dziala";
+    }
+    return dog;
+}
+
 
 const renderDogs = (dogList) => {
+    isDataExist = (checkData) => {
+        dogList.forEach(checkData)
+    }
     renderHtml(
         document.getElementsByClassName('fixed-table_body')[0],
         dogList.reduce((html, dog) =>
+
             `${html}
             <tr>
-                <td>${dog.name +' '+ dog.familyName}</td>
-                <td>${dog.age}</td>
+                <td>${renderNameLabel(dog.name) +' '+ renderNameLabel(dog.familyName)}</td>
+                <td>${renderAgeLabel(dog.age)}</td>
                 <td>${(dog.age/12).toFixed(1)}</td>
                 <td>${dog.race}</td>
-            </tr>`
-        , '')
+            </tr>`, '')
     );
 }
 
@@ -26,7 +45,7 @@ const renderDogImage = (dog) => {
 
 const onAddDogButtonClick = (event) => {
     const currentDogList = getDogList(state);
-    const dogList = concat(currentDogList,randomDog = {});
+    const dogList = concat(currentDogList, randomDog = {});
     //...
 }
 
@@ -54,8 +73,7 @@ const run = () => {
 };
 
 // this is example data received
-const dogList = [
-    {
+const dogList = [{
         name: 'Fluffy',
         familyName: 'von Hohenshlosen',
         race: 'Pitbull',
@@ -90,7 +108,7 @@ const dogList = [
 ]
 
 // some domain simulation
-const fetch = () => 
+const fetch = () =>
     new Promise(
         (resolve) => {
             setTimeout(() => {
@@ -116,7 +134,8 @@ const renderHtml = (parentElement, html) => parentElement.innerHTML = html;
 // utility function set vale on given path, curried, return new obj
 // f(array) -> (object) -> any -> any
 const set = (path) => (object) => (value) => {
-    const result = { ...object };
+    const result = { ...object
+    };
 
     if (!path || !path.length) {
         return value;
@@ -127,7 +146,8 @@ const set = (path) => (object) => (value) => {
     if (path.length === 0) {
         result[current] = value;
     } else {
-        result[current] = set(path)({...object[current]})(value);
+        result[current] = set(path)({ ...object[current]
+        })(value);
     }
 
     return result;
@@ -137,7 +157,8 @@ const set = (path) => (object) => (value) => {
 // f(array) -> (object) -> any
 const get = (path) => (object) => {
 
-    const data = { ...object };
+    const data = { ...object
+    };
 
     if (!path || !path.length) {
         return data;
@@ -158,14 +179,14 @@ const concat = (l1, l2) => l1.concat(l2);
 const setState = (value) => {
     state = set()(state)(value);
     return state;
-}; 
+};
 
 // just shortcut to get list of dogs from state
 // f(object) -> array
 const getDogList = get(['dogList']);
 
 // just a shortcut to set a dogList prop on state
-const setDogList = 
+const setDogList =
     compose(
         setState, // update state with { dogList : any }
         set(['dogList'])({}), //wrap to { dogList : any }

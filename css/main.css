@@ -11,6 +11,7 @@
 .fixed-table {
     max-width: 720px;
     align-self: center;
+    
 }
 
 .fixed-table tr:nth-child(even) {
