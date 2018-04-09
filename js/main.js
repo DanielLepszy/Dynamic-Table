@@ -8,7 +8,9 @@ const renderDogs = (dogList) => {
         dogList.reduce((html, dog) =>
             `${html}
             <tr>
-                <td>${dog.name}</td>
+                <td>${dog.name +' '+ dog.familyName}</td>
+                <td>${dog.age}</td>
+                <td></td>
                 <td>${dog.race}</td>
             </tr>`
         , '')
