@@ -10,7 +10,7 @@ const renderDogs = (dogList) => {
             <tr>
                 <td>${dog.name +' '+ dog.familyName}</td>
                 <td>${dog.age}</td>
-                <td></td>
+                <td>${(dog.age/12).toFixed(1)}</td>
                 <td>${dog.race}</td>
             </tr>`
         , '')
