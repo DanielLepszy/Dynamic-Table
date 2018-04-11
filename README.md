@@ -46,14 +46,14 @@ User wants to have images of each dog
 
 * add new column witch action button or click action on row that will allow to display image in provided container
 * when clicked it should render an image in a container
-* on age header add two buttons ( &#x25B2;, &#x25BC;), depending which is clicked it should call action that will sort data by age, ascending or descendig 
+* on age header add two buttons ( &#x25B2;, &#x25BC;), depending which is clicked it should call action that will sort data by age, x or descendig 
 
 ### Bonus
 
 * add loader when waiting for data
 * make image preview a modal
-* make table even more pretty
-* sort by full name
+* make table even more pretty 
+* sort by full name 
 * can You make table render faster?
 
 

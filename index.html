@@ -16,11 +16,14 @@
     <table class="fixed-table" id="dogsContainer">
         <thead class="fixed-table_head">
             <tr>
-                <th>Name</th>
+                <th>
+                    <button onclick="sortAscedning()">&#x25B2</button>
+                    Name</th>
+                <button onclick="sortDescending()">&#x25BC</button>
                 <th class="arrow-select">
-                    <button>&#x25B2</button>
+                    <button onclick="sortAscedning()">&#x25B2</button>
                     Age (in months)
-                    <button>&#x25BC</button>
+                    <button onclick="sortDescending()">&#x25BC</button>
                 </th>
                 <th>Age (in years)</th>
                 <th>Race</th>

@@ -55,23 +55,19 @@ const renderDogs = (dogList) => {
 const renderDogImage = (dog) => {
     const imageContainer = document.getElementsByClassName('dog-image-container')[0];
 
-    const showImageOfDog = () => {
-
-        var img = document.createElement("IMG");
-        img.setAttribute("src", "https://loremflickr.com/320/240/puppy");
-        img.setAttribute("width", "340");
-        img.setAttribute("height", "220");
-        img.setAttribute("alt", "The Pulpit Rock");
-        imageContainer.appendChild(img);
-
-    }
+    const img = document.createElement("IMG");
+    img.setAttribute("src", "https://loremflickr.com/320/240/puppy");
+    img.setAttribute("width", "340");
+    img.setAttribute("height", "220");
+    img.setAttribute("alt", "The Pulpit Rock");
+    img.onload = function () {
+        console.log('s')
+    } // di
     renderHtml(
         imageContainer,
-        showImageOfDog()
+        img.outerHTML
     )
-
 }
-
 const onAddDogButtonClick = (event) => {
 
     const currentDogList = Object.values(getDogList(state));
@@ -81,10 +77,10 @@ const onAddDogButtonClick = (event) => {
 
 }
 const randomDog = () => {
-    const newNameDog = ['Felix', 'Fennel', 'Stella', 'ChewChew', 'Slugger', 'Nymph', 'Baroque', 'Derby', 'CutiePie', 'Sauce'];
-    const newFamilyNameDog = ['Sweet', 'von Haleson', 'of the city', 'Olive', 'Sprinkles', 'Kelby', 'Brandy', 'Sookie', 'Touchdown', 'Harley'];
-    const raceDogs = ['Greyhound', 'Vizsla', 'Jack Russell Terrier', 'Borzoi', 'Weimaraner', 'Doberman', 'Dalmatian', 'Border Collie', 'Whippet', 'Saluki'];
-    const ageDogsInMonth = [14, 55, 96, 120, 12, 18, 64, 23, 45, 6];
+    const arrayOfRandomDogsNames = ['Felix', 'Fennel', 'Stella', 'ChewChew', 'Slugger', 'Nymph', 'Baroque', 'Derby', 'CutiePie', 'Sauce'];
+    const arrayOfFamilyDogNames = ['Sweet', 'von Haleson', 'of the city', 'Olive', 'Sprinkles', 'Kelby', 'Brandy', 'Sookie', 'Touchdown', 'Harley'];
+    const arrayOfRaceDogs = ['Greyhound', 'Vizsla', 'Jack Russell Terrier', 'Borzoi', 'Weimaraner', 'Doberman', 'Dalmatian', 'Border Collie', 'Whippet', 'Saluki'];
+    const ageDogsInMonth = [14, 55, 96, 120, 12, 18, 64, 23, 45, 6]; // LOSOWANIE
     const imageOfDog = [
         'https://upload.wikimedia.org/wikipedia/commons/3/38/Greyhound_Racing_2_amk.jpg',
         'https://upload.wikimedia.org/wikipedia/commons/8/89/Vizsla_02.jpg',
@@ -96,64 +92,53 @@ const randomDog = () => {
         'https://upload.wikimedia.org/wikipedia/commons/b/be/Blue_merle_Border_Collie.jpg',
         'https://upload.wikimedia.org/wikipedia/commons/5/5e/WhippetWhiteSaddled_wb.jpg',
         'https://upload.wikimedia.org/wikipedia/commons/9/9a/Saluki_600.jpg'
-    ]
-    const selectIndexODogsfArray = (selecetedArray) => {
-        return Math.floor(Math.random() * (selecetedArray.length - 1));
+    ] // MALE ZDJECIA !
+    const getRandomIndexFromArray = (selecetedArray) => {
+        return Math.floor(Math.random() * (selecetedArray.length));
     }
-    let indexOfImageAndRaceOfDog = selectIndexODogsfArray(raceDogs);
-
-    const randomNameDog = newNameDog.splice(selectIndexODogsfArray(newNameDog), 1);
-    const randomFamilyNameDog = newFamilyNameDog.splice(selectIndexODogsfArray(newFamilyNameDog), 1);
-    const randomAgeDogsInMonth = ageDogsInMonth.splice(selectIndexODogsfArray(ageDogsInMonth), 1);
-    const randomraceDogs = raceDogs.splice(indexOfImageAndRaceOfDog, 1);
-    const randomImageOfDog = imageOfDog.splice(indexOfImageAndRaceOfDog, 1);
+    let indexOfImageAndRaceOfDog = getRandomIndexFromArray(arrayOfRaceDogs);
+    // BURDEL LOSOWANIE INDEKSOW
+    const randomNameDog = arrayOfRandomDogsNames[getRandomIndexFromArray(arrayOfRandomDogsNames)];
+    const randomFamilyNameDog = arrayOfFamilyDogNames[getRandomIndexFromArray(arrayOfFamilyDogNames)];
+    const randomAgeDogsInMonth = ageDogsInMonth[getRandomIndexFromArray(ageDogsInMonth)];
+    const randomraceDogs = arrayOfRaceDogs[getRandomIndexFromArray(arrayOfRaceDogs)];
+    const randomImageOfDog = imageOfDog[getRandomIndexFromArray(imageOfDog)];
 
     const data = [{
-        name: randomNameDog[0],
-        familyName: randomFamilyNameDog[0],
-        race: randomraceDogs[0],
-        age: randomAgeDogsInMonth[0],
-        image: randomImageOfDog[0]
+        name: randomNameDog,
+        familyName: randomFamilyNameDog,
+        race: randomraceDogs,
+        age: randomAgeDogsInMonth,
+        image: randomImageOfDog
     }, ];
     return data
 }
-
+// 
+// function compare(a, b) {
+//     let comparison = 0;
+//     if (a.age > b.age) {
+//         comparison = 1;
+//     } else if (a.age < b.age) {
+//         comparison = -1;
+//     }
+//     return comparison;
+// }
 const sortAscedning = () => {
-    let currentAgeDogList = Object.values(getDogList(state));
-    let copyOfCurrentAgeDogList = [];
-    let newCopy = [];
-    for (var i = 0; i <= currentAgeDogList.length - 1; i++) {
-    
-        if (currentAgeDogList[i].age === undefined || currentAgeDogList[i].age === null) {
-            currentAgeDogList[i].age = 'Unknown'
-            copyOfCurrentAgeDogList.push(currentAgeDogList[i].age);
-        }
-        else{
-        copyOfCurrentAgeDogList.push(currentAgeDogList[i].age);
-        }
-    }
-    copyOfCurrentAgeDogList.sort(function (a, b) {
-        return a + b
-    }); // UNDEFINED WHY???
-    console.log(currentAgeDogList);
-    console.log(copyOfCurrentAgeDogList);
-
-    const sorted = (currentValue,index) => {
-        
-        for (var j = index + 1; j < copyOfCurrentAgeDogList.length - 1; j++) {
-            if (copyOfCurrentAgeDogList[index] === currentAgeDogList[j].age) {
-               
-                newCopy.push(currentAgeDogList[j]);
-            } else {}
-        }
-    }
-
-    //copyOfCurrentAgeDogList.forEach(sorted);
-    // console.log(newCopy);
+    let dogList = Object.values(getDogList(state));
+    let dogsWithoutAge = dogList.filter(a => a.age === undefined || a.age === null)
+    dogList = dogList.filter(a => a.age != undefined && a.age != null).sort((a, b) => a.age > b.age)
+    dogList = dogList.concat(dogsWithoutAge);
+    console.log(dogList)
+    renderDogs(dogList);
+    setState(dogList);
 }
-
 const sortDescending = () => {
 
+    let dogList = Object.values(getDogList(state));
+    dogList.sort((a, b) => a.age < b.age)
+    console.log(dogList)
+    renderDogs(dogList);
+    setState(dogList);
 }
 
 
