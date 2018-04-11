@@ -24,8 +24,11 @@ renderNameLabel = (dog) => {
     ) {
         return ""
     }
-    if (dog.name === undefined) {
+    if (dog.name === undefined || dog.name === null ) {
         return dog.familyName
+    }
+    if (dog.familyName === undefined || dog.familyName === null) {
+        return dog.name
     }
     return dog.name + ' ' + dog.familyName
 }
@@ -44,23 +47,37 @@ const renderDogs = (dogList) => {
                 <td>${renderAgeLabel(dog.age)}</td>
                 <td>${renderAgeInYearLabel(dog.age)}</td>
                 <td>${dog.race}</td>
+                <td>${'<button onclick =renderDogImage()>Show Image</button>'}</td>
             </tr>`, '')
     );
 }
 
 const renderDogImage = (dog) => {
+    const imageContainer = document.getElementsByClassName('dog-image-container')[0];
+
+    const showImageOfDog = () => {
+
+        var img = document.createElement("IMG");
+        img.setAttribute("src", "https://loremflickr.com/320/240/puppy");
+        img.setAttribute("width", "340");
+        img.setAttribute("height", "220");
+        img.setAttribute("alt", "The Pulpit Rock");
+        imageContainer.appendChild(img);
+
+    }
     renderHtml(
-        document.getElementsByClassName('dog-image-container')[0],
-        'image to be rendered'
-    );
+        imageContainer,
+        showImageOfDog()
+    )
+
 }
 
 const onAddDogButtonClick = (event) => {
-    
+
     const currentDogList = Object.values(getDogList(state));
-    const dogList = concat(currentDogList,randomDog());
+    const dogList = concat(currentDogList, randomDog());
     renderDogs(dogList);
-    return  setState(dogList);
+    return setState(dogList);
 
 }
 const randomDog = () => {
@@ -68,7 +85,6 @@ const randomDog = () => {
     const newFamilyNameDog = ['Sweet', 'von Haleson', 'of the city', 'Olive', 'Sprinkles', 'Kelby', 'Brandy', 'Sookie', 'Touchdown', 'Harley'];
     const raceDogs = ['Greyhound', 'Vizsla', 'Jack Russell Terrier', 'Borzoi', 'Weimaraner', 'Doberman', 'Dalmatian', 'Border Collie', 'Whippet', 'Saluki'];
     const ageDogsInMonth = [14, 55, 96, 120, 12, 18, 64, 23, 45, 6];
-
     const imageOfDog = [
         'https://upload.wikimedia.org/wikipedia/commons/3/38/Greyhound_Racing_2_amk.jpg',
         'https://upload.wikimedia.org/wikipedia/commons/8/89/Vizsla_02.jpg',
@@ -81,14 +97,14 @@ const randomDog = () => {
         'https://upload.wikimedia.org/wikipedia/commons/5/5e/WhippetWhiteSaddled_wb.jpg',
         'https://upload.wikimedia.org/wikipedia/commons/9/9a/Saluki_600.jpg'
     ]
-    const indexOfArray = (selecetedArray) => {
+    const selectIndexODogsfArray = (selecetedArray) => {
         return Math.floor(Math.random() * (selecetedArray.length - 1));
     }
-    let indexOfImageAndRaceOfDog = indexOfArray(raceDogs);
+    let indexOfImageAndRaceOfDog = selectIndexODogsfArray(raceDogs);
 
-    const randomNameDog = newNameDog.splice(indexOfArray(newNameDog), 1);
-    const randomFamilyNameDog = newFamilyNameDog.splice(indexOfArray(newFamilyNameDog), 1);
-    const randomAgeDogsInMonth = ageDogsInMonth.splice(indexOfArray(ageDogsInMonth), 1);
+    const randomNameDog = newNameDog.splice(selectIndexODogsfArray(newNameDog), 1);
+    const randomFamilyNameDog = newFamilyNameDog.splice(selectIndexODogsfArray(newFamilyNameDog), 1);
+    const randomAgeDogsInMonth = ageDogsInMonth.splice(selectIndexODogsfArray(ageDogsInMonth), 1);
     const randomraceDogs = raceDogs.splice(indexOfImageAndRaceOfDog, 1);
     const randomImageOfDog = imageOfDog.splice(indexOfImageAndRaceOfDog, 1);
 
@@ -98,8 +114,7 @@ const randomDog = () => {
         race: randomraceDogs[0],
         age: randomAgeDogsInMonth[0],
         image: randomImageOfDog[0]
-    },
-];
+    }, ];
     return data
 }
 
@@ -250,4 +265,3 @@ const setDogList =
 //     helloTest: helloTest,
 //     renderNameLabel: renderNameLabel
 // }
-console.log(typeof dogList);
