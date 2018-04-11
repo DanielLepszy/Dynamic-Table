@@ -24,7 +24,7 @@ renderNameLabel = (dog) => {
     ) {
         return ""
     }
-    if (dog.name === undefined || dog.name === null ) {
+    if (dog.name === undefined || dog.name === null) {
         return dog.familyName
     }
     if (dog.familyName === undefined || dog.familyName === null) {
@@ -119,7 +119,37 @@ const randomDog = () => {
 }
 
 const sortAscedning = () => {
+    let currentAgeDogList = Object.values(getDogList(state));
+    let copyOfCurrentAgeDogList = [];
+    let newCopy = [];
+    for (var i = 0; i <= currentAgeDogList.length - 1; i++) {
+    
+        if (currentAgeDogList[i].age === undefined || currentAgeDogList[i].age === null) {
+            currentAgeDogList[i].age = 'Unknown'
+            copyOfCurrentAgeDogList.push(currentAgeDogList[i].age);
+        }
+        else{
+        copyOfCurrentAgeDogList.push(currentAgeDogList[i].age);
+        }
+    }
+    copyOfCurrentAgeDogList.sort(function (a, b) {
+        return a + b
+    }); // UNDEFINED WHY???
+    console.log(currentAgeDogList);
+    console.log(copyOfCurrentAgeDogList);
 
+    const sorted = (currentValue,index) => {
+        
+        for (var j = index + 1; j < copyOfCurrentAgeDogList.length - 1; j++) {
+            if (copyOfCurrentAgeDogList[index] === currentAgeDogList[j].age) {
+               
+                newCopy.push(currentAgeDogList[j]);
+            } else {}
+        }
+    }
+
+    //copyOfCurrentAgeDogList.forEach(sorted);
+    // console.log(newCopy);
 }
 
 const sortDescending = () => {
