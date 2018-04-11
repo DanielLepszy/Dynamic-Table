@@ -56,9 +56,11 @@ const renderDogImage = (dog) => {
 }
 
 const onAddDogButtonClick = (event) => {
-    const currentDogList = getDogList(state);
-    const dogList = concat(currentDogList, randomDog());
-    console.log(currentDogList);
+    
+    const currentDogList = Object.values(getDogList(state));
+    const dogList = concat(currentDogList,randomDog());
+    renderDogs(dogList);
+    return  setState(dogList);
 
 }
 const randomDog = () => {
@@ -89,16 +91,18 @@ const randomDog = () => {
     const randomAgeDogsInMonth = ageDogsInMonth.splice(indexOfArray(ageDogsInMonth), 1);
     const randomraceDogs = raceDogs.splice(indexOfImageAndRaceOfDog, 1);
     const randomImageOfDog = imageOfDog.splice(indexOfImageAndRaceOfDog, 1);
-    return [{
-        name: randomNameDog,
-        familyName: randomFamilyNameDog,
-        race: randomraceDogs,
-        age: randomAgeDogsInMonth,
-        image: randomImageOfDog
 
-    }];
+    const data = [{
+        name: randomNameDog[0],
+        familyName: randomFamilyNameDog[0],
+        race: randomraceDogs[0],
+        age: randomAgeDogsInMonth[0],
+        image: randomImageOfDog[0]
+    },
+];
+    return data
 }
-console.log(randomDog());
+
 const sortAscedning = () => {
 
 }
@@ -246,3 +250,4 @@ const setDogList =
 //     helloTest: helloTest,
 //     renderNameLabel: renderNameLabel
 // }
+console.log(typeof dogList);
