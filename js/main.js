@@ -47,18 +47,18 @@ const renderDogs = (dogList) => {
                 <td>${renderAgeLabel(dog.age)}</td>
                 <td>${renderAgeInYearLabel(dog.age)}</td>
                 <td>${dog.race}</td>
-                <td>${'<button onclick = renderDogImage(this) >Show Image</button>'}</td>
+                <td>${'<button onclick = renderDogImage(this) class="btn btn-outline-light" >Show Image</button>'}</td>
             </tr>`, '')
     );
 }
-const hiddenLoader =(firstloader,secondloader) =>{
-    firstloader.style='';
-    secondloader.style='';
+const hiddenLoader = (firstloader, secondloader) => {
+    firstloader.style = '';
+    secondloader.style = '';
 }
-const showLoader =(firstloader,secondloader) =>{
-    const url = 'background:transparent url("http://thinkfuture.com/wp-content/uploads/2013/10/loading_spinner.gif") center no-repeat;'
-    firstloader.style=url;
-    secondloader.style=url;
+const showLoader = (firstloader, secondloader) => {
+    const style = 'background:transparent url("https://i.stack.imgur.com/naLBK.gif") center no-repeat;'
+    firstloader.style = style;
+    secondloader.style = style;
 }
 const renderDogImage = (element) => {
     const imageContainer = document.getElementsByClassName('dog-image-container')[0];
@@ -67,7 +67,7 @@ const renderDogImage = (element) => {
     const imageOfDogs = Object.values(getDogList(state));
 
     if (imageOfDogs[rowIndexButton].image === undefined || imageOfDogs[rowIndexButton].image === null) {
-        hiddenLoader(imageContainer,secondImageContainer)
+        hiddenLoader(imageContainer, secondImageContainer)
         const paragraph = document.createElement("P")
         const contentOfParagraph = document.createTextNode("We don't have a image of this dog. Sorry :(")
         paragraph.appendChild(contentOfParagraph);
@@ -80,7 +80,7 @@ const renderDogImage = (element) => {
             paragraph.outerHTML
         )
     } else {
-        showLoader(imageContainer,secondImageContainer)
+        showLoader(imageContainer, secondImageContainer)
         const img = document.createElement("IMG");
         img.setAttribute("src", imageOfDogs[rowIndexButton].image);
         img.setAttribute("width", "340");
@@ -153,16 +153,32 @@ const dogSorter = (sorter, filter, withoutFilter) => {
 }
 
 const sortDescending = () => {
-    dogSorter((a, b) => a.age < b.age, a => a.age != undefined && a.age != null, a => a.age === undefined || a.age === null)
+    dogSorter(
+        (a, b) => a.age < b.age,
+        a => a.age != undefined && a.age != null,
+        a => a.age === undefined || a.age === null
+    )
 }
 const sortAscedning = () => {
-    dogSorter((a, b) => a.age > b.age, a => a.age != undefined && a.age != null, a => a.age === undefined || a.age === null)
+    dogSorter(
+        (a, b) => a.age > b.age,
+        a => a.age != undefined && a.age != null,
+        a => a.age === undefined || a.age === null
+    )
 }
 const sortByFullNameAlphabetically = () => {
-    dogSorter((a, b) => a.name > b.name, a => a.name != undefined && a.name != null, a => a.name === undefined || a.name === null)
+    dogSorter(
+        (a, b) => a.name > b.name, 
+        a => a.name != undefined && a.name != null, 
+        a => a.name === undefined || a.name === null
+    )
 }
 const sortByFullNameNonAlphabetically = () => {
-    dogSorter((a, b) => b.name > a.name, a => a.name != undefined && a.name != null, a => a.name === undefined || a.name === null)
+    dogSorter(
+        (a, b) => b.name > a.name, 
+        a => a.name != undefined && a.name != null, 
+        a => a.name === undefined || a.name === null
+    )
 }
 
 const showModalImageOfDogs = (modal, modalImg, captionText, imageOfDog) => {

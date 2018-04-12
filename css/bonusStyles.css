@@ -13,8 +13,8 @@
 .dog-image-container
 {   
     width: 360px;
-    padding: 15px 0px 60px 10px;
-    border: 1px solid #BFBFBF;  
+    padding: 15px 0px 65px 10px;
+    border: 1px solid rgba(191, 191, 191, 0.438);  
     background-color: white;
     box-shadow: -20px 20px 20px #aaaaaa;
     -ms-transform: rotate(-9deg); 

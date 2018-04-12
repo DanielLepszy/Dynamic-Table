@@ -4,7 +4,7 @@
     transition: 0.3s;
 }
 #currentImage:hover {
-    opacity: 0.8
+    filter: brightness(110%);
 }
 
 .modal {
