@@ -19,7 +19,7 @@
     <table class="fixed-table" id="dogsContainer">
         <thead class="fixed-table_head">
             <tr>
-                <th>
+                <th class='name' onclick="loader()">
                     Name
                     <div valign="bottom">
                         <button onclick="sortByFullNameAlphabetically()" >&#x25B2</button>
@@ -35,7 +35,7 @@
                 </th>
                 <th>Age (in years)</th>
                 <th>Race</th>
-                <th>Images</th>
+                <th >Images</th>
             </tr>
         </thead>
         <tbody class="fixed-table_body">
@@ -52,8 +52,8 @@
         </tfoot>
     </table>
     <div id="doubleImage">
-        <div class="dog-image-container" onclick='modalImageOfDog()'></div>
-        <div class="dog-image-container" onclick='modalImageOfDog()'></div>
+        <div class="dog-image-container" onclick='modalImageOfDog()' id="loading"></div>
+        <div class="dog-image-container" onclick='modalImageOfDog()' id="loading"></div>
     </div>
     <div id="myModal" class="modal">
         <span class="close">&times;</span>

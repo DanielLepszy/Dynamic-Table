@@ -47,11 +47,19 @@ const renderDogs = (dogList) => {
                 <td>${renderAgeLabel(dog.age)}</td>
                 <td>${renderAgeInYearLabel(dog.age)}</td>
                 <td>${dog.race}</td>
-                <td>${'<button onclick = renderDogImage(this)>Show Image</button>'}</td>
+                <td>${'<button onclick = renderDogImage(this) >Show Image</button>'}</td>
             </tr>`, '')
     );
 }
-
+const hiddenLoader =(firstloader,secondloader) =>{
+    firstloader.style='';
+    secondloader.style='';
+}
+const showLoader =(firstloader,secondloader) =>{
+    const url = 'background:transparent url("http://thinkfuture.com/wp-content/uploads/2013/10/loading_spinner.gif") center no-repeat;'
+    firstloader.style=url;
+    secondloader.style=url;
+}
 const renderDogImage = (element) => {
     const imageContainer = document.getElementsByClassName('dog-image-container')[0];
     const secondImageContainer = document.getElementsByClassName('dog-image-container')[1];
@@ -59,6 +67,7 @@ const renderDogImage = (element) => {
     const imageOfDogs = Object.values(getDogList(state));
 
     if (imageOfDogs[rowIndexButton].image === undefined || imageOfDogs[rowIndexButton].image === null) {
+        hiddenLoader(imageContainer,secondImageContainer)
         const paragraph = document.createElement("P")
         const contentOfParagraph = document.createTextNode("We don't have a image of this dog. Sorry :(")
         paragraph.appendChild(contentOfParagraph);
@@ -66,8 +75,12 @@ const renderDogImage = (element) => {
             imageContainer,
             paragraph.outerHTML
         )
+        renderHtml(
+            secondImageContainer,
+            paragraph.outerHTML
+        )
     } else {
-
+        showLoader(imageContainer,secondImageContainer)
         const img = document.createElement("IMG");
         img.setAttribute("src", imageOfDogs[rowIndexButton].image);
         img.setAttribute("width", "340");
@@ -152,12 +165,12 @@ const sortByFullNameNonAlphabetically = () => {
     dogSorter((a, b) => b.name > a.name, a => a.name != undefined && a.name != null, a => a.name === undefined || a.name === null)
 }
 
-const showModalImageOfDogs=(modal,modalImg,captionText,imageOfDog) =>{
+const showModalImageOfDogs = (modal, modalImg, captionText, imageOfDog) => {
     imageOfDog.onclick = function () {
-    modal.style.display = "block";
-    modalImg.src = this.src;
-    captionText.innerHTML = this.alt;
-}
+        modal.style.display = "block";
+        modalImg.src = this.src;
+        captionText.innerHTML = this.alt;
+    }
 }
 const hideModalImageOfDog = (modal) => {
     var span = document.getElementsByClassName("close")[0];
@@ -171,9 +184,22 @@ const modalImageOfDog = () => {
     var captionText = document.getElementById("caption");
     const imageOfDog = document.getElementById('currentImage')
 
-    showModalImageOfDogs(modal,modalImg,captionText,imageOfDog);
+    showModalImageOfDogs(modal, modalImg, captionText, imageOfDog);
     hideModalImageOfDog(modal);
 }
+const loader = (code) => {
+
+    const css = document.createElement("style");
+    // css.type = "text/css";
+    css.innerHTML = "color:red";
+    // // renderHtml(
+    // //     document.getElementsByClassName('name')[0],
+    // //     css.outerHTML
+    // // )
+
+    document.body.appendChild(css);
+}
+
 //There shouldn't be a need to modifiy code below.
 const run = () => {
 
