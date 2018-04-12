@@ -112,9 +112,11 @@ const modalImageOfDog = () => {
     var modal = document.getElementById('myModal');
     var modalImg = document.getElementById("biggerImage")
     var captionText = document.getElementById("caption");
-    const imageOfDog = document.getElementById('currentImage')
+    const firstImageOfDog = document.getElementById('currentImage')
+    const secondImageOfDog = document.getElementsByTagName("img")[2];
 
-    showModalImageOfDogs(modal, modalImg, captionText, imageOfDog);
+    showModalImageOfDogs(modal, modalImg, captionText, firstImageOfDog);
+    showModalImageOfDogs(modal, modalImg, captionText, secondImageOfDog);
     hideModalImageOfDog(modal);
 }
 const loader = (code) => {
