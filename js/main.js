@@ -94,26 +94,28 @@ const randomDog = () => {
     const arrayOfRaceDogs = ['Greyhound', 'Vizsla', 'Jack Russell Terrier', 'Borzoi', 'Weimaraner', 'Doberman', 'Dalmatian', 'Border Collie', 'Whippet', 'Saluki'];
     const ageDogsInMonth = Math.floor((Math.random() * 150) + 1);
     const imageOfDog = [
+        'http://delivery.gettyimages.com/xr/838802064.jpg?v=1&c=IWSAsset&k=3&d=77BFBA49EF878921E86F5CE8BE5D78FBD55DF99FD9E8BD24276DC49E8C1FE6E7AE5C6B1A84356E05A55A1E4F32AD3138',
         'https://upload.wikimedia.org/wikipedia/commons/8/89/Vizsla_02.jpg',
-        'http://www.normandie-tourisme.fr/docs/1815-5-chien-de-chasse.jpg',
         'https://i.woman-day.info/wp-content/uploads/shchenok1-340x220.jpg',
-        'http://www.adruby.com/files/styles/category-image/public/image-ads/hyundai-anteater-dog-polar-cow-print-0001.jpg?itok=uXleTPoK',
+        'http://animals1.ru/photo/midi/b8h006zfs892.jpg',
         'https://viralchop.com/wp-content/uploads/2017/10/maxresdefault-1447-340x220.jpg',
         'https://itsadoggiething.com/wp-content/uploads/2017/12/doberman-3023037_640-340x220.jpg',
         'http://dalmatian-drug.narod.ru/images/fotos/Markiz/Markiz_1god_1copy2.jpg',
         'https://thelatest.co.uk/files/2016/07/4-4-340x220.jpg',
-        'https://galtx-centex.org/img/lily2.jpg'
+        'https://galtx-centex.org/img/lily2.jpg',
+        'http://www.geocities.jp/cinccombinedfleet/File00801.jpg'
     ]
     const getRandomIndexFromArray = (selecetedArray) => {
         return Math.floor(Math.random() * (selecetedArray.length));
     }
+    let getRandomIndexRaceAndImage = getRandomIndexFromArray(arrayOfRaceDogs); //It's provide race with properly image of dog
+
     let indexOfImageAndRaceOfDog = getRandomIndexFromArray(arrayOfRaceDogs);
     const randomNameDog = arrayOfRandomDogsNames[getRandomIndexFromArray(arrayOfRandomDogsNames)];
     const randomFamilyNameDog = arrayOfFamilyDogNames[getRandomIndexFromArray(arrayOfFamilyDogNames)];
     const randomAgeDogsInMonth = ageDogsInMonth;
-    const randomraceDogs = arrayOfRaceDogs[getRandomIndexFromArray(arrayOfRaceDogs)];
-    const randomImageOfDog = imageOfDog[getRandomIndexFromArray(imageOfDog)];
-
+    const randomraceDogs = arrayOfRaceDogs[getRandomIndexRaceAndImage];
+    const randomImageOfDog = imageOfDog[getRandomIndexRaceAndImage];
     const data = [{
         name: randomNameDog,
         familyName: randomFamilyNameDog,
