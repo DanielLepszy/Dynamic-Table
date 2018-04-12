@@ -11,7 +11,10 @@
 
 .fixed-table {
     max-width: 720px;
+    box-shadow: 15px -15px 20px #aaaaaa;
     align-self: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-bottom:50px;
 }
 
 .fixed-table tr:nth-child(even) {

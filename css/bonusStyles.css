@@ -1,0 +1,33 @@
+.fixed-table th,
+.fixed-table td {
+    border-style: outset;
+    padding-left: 5px;
+}
+#doubleImage
+{
+    display:flex;
+    flex-direction: row;
+    align-self: center;
+}
+
+.dog-image-container
+{   
+    width: 360px;
+    padding: 15px 0px 60px 10px;
+    border: 1px solid #BFBFBF;  
+    background-color: white;
+    box-shadow: -20px 20px 20px #aaaaaa;
+    -ms-transform: rotate(-9deg); 
+    -webkit-transform: rotate(-9deg); 
+    transform: rotate(-9deg);
+    
+}
+.dog-image-container:nth-of-type(2)
+{
+    margin-left:155px;
+    box-shadow: 20px 20px 20px #aaaaaa;
+    -ms-transform: rotate(9deg); 
+    -webkit-transform: rotate(9deg); 
+    transform: rotate(9deg); 
+    
+}

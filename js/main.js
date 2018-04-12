@@ -54,6 +54,7 @@ const renderDogs = (dogList) => {
 
 const renderDogImage = (element) => {
     const imageContainer = document.getElementsByClassName('dog-image-container')[0];
+    const secondImageContainer = document.getElementsByClassName('dog-image-container')[1];
     const rowIndexButton = ((element.parentNode.parentNode.rowIndex) - 1);
     const imageOfDogs = Object.values(getDogList(state));
 
@@ -73,9 +74,12 @@ const renderDogImage = (element) => {
         img.setAttribute("height", "220");
         img.setAttribute("alt", imageOfDogs[rowIndexButton].race);
         img.setAttribute("id", "currentImage");
-
         renderHtml(
             imageContainer,
+            img.outerHTML
+        )
+        renderHtml(
+            secondImageContainer,
             img.outerHTML
         )
     }
@@ -184,9 +188,6 @@ const modalImageOfDog = () => {
     showModalImageOfDogs(modal,modalImg,captionText,imageOfDog);
     hideModalImageOfDog(modal);
 }
-
-
-
 //There shouldn't be a need to modifiy code below.
 const run = () => {
 

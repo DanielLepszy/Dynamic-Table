@@ -7,13 +7,14 @@
     <title>Dogs</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="css/modalImageStyles.css"/>
+    <link rel="stylesheet" type="text/css" media="screen" href="css/modalImageStyles.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="css/bonusStyles.css" />
     <script src="js/main.js"></script>
 </head>
 
 
 <body class="dogs-app">
-    <h1 class="main-title">Dogs</h1>
+    <h1 class="main-title"><img src="Images/dogLogo.png" alt='Logo'></h1>
     <table class="fixed-table" id="dogsContainer">
         <thead class="fixed-table_head">
             <tr>
@@ -33,7 +34,7 @@
                 </th>
                 <th>Age (in years)</th>
                 <th>Race</th>
-                <th>dog image</th>
+                <th>Inages</th>
             </tr>
         </thead>
         <tbody class="fixed-table_body">
@@ -41,14 +42,17 @@
         </tbody>
         <tfoot>
             <tr>
-                <td></td>
-                <td>
+
+                <td colspan='100%' style="text-align: center;">
                     <button type="button" onclick="onAddDogButtonClick(event)">Add a dog</button>
                 </td>
+
             </tr>
         </tfoot>
     </table>
-    <div class="dog-image-container" onclick='modalImageOfDog()'>
+    <div id="doubleImage">
+        <div class="dog-image-container" onclick='modalImageOfDog()'></div>
+        <div class="dog-image-container" onclick='modalImageOfDog()'></div>
     </div>
     <div id="myModal" class="modal">
         <span class="close">&times;</span>
