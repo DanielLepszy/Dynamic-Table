@@ -129,43 +129,29 @@ const randomDog = () => {
     }, ];
     return data
 }
-const sortAscedning = () => {
+
+const dogSorter = (sorter, filter, withoutFilter) => {
     let dogList = Object.values(getDogList(state));
-    let dogsWithoutAge = dogList.filter(a => a.age === undefined || a.age === null)
-    dogList = dogList.filter(a => a.age != undefined && a.age != null).sort((a, b) => a.age > b.age)
+    let dogsWithoutAge = dogList.filter(withoutFilter)
+    dogList = dogList.filter(filter).sort(sorter)
     dogList = dogList.concat(dogsWithoutAge);
     renderDogs(dogList);
     setState(dogList);
 }
-const sortDescending = () => {
 
-    let dogList = Object.values(getDogList(state));
-    let dogsWithoutAge = dogList.filter(a => a.age === undefined || a.age === null)
-    dogList = dogList.filter(a => a.age != undefined && a.age != null).sort((a, b) => a.age < b.age)
-    dogList = dogList.concat(dogsWithoutAge);
-    renderDogs(dogList);
-    setState(dogList);
+const sortDescending = () => {
+    dogSorter((a, b) => a.age < b.age, a => a.age != undefined && a.age != null, a => a.age === undefined || a.age === null)
+}
+const sortAscedning = () => {
+    dogSorter((a, b) => a.age > b.age, a => a.age != undefined && a.age != null, a => a.age === undefined || a.age === null)
 }
 const sortByFullNameAlphabetically = () => {
-
-    let dogList = Object.values(getDogList(state));
-    let dogsWithoutName = dogList.filter(a => a.name === undefined || a.name === null)
-    dogList = dogList.filter(a => a.name != undefined && a.name != null).sort((a, b) => a.name > b.name)
-    dogList = dogList.concat(dogsWithoutName);
-    dogList = dogList.sort()
-    renderDogs(dogList);
-    setState(dogList);
+    dogSorter((a, b) => a.name > b.name, a => a.name != undefined && a.name != null, a => a.name === undefined || a.name === null)
 }
 const sortByFullNameNonAlphabetically = () => {
-
-    let dogList = Object.values(getDogList(state));
-    let dogsWithoutName = dogList.filter(a => a.name === undefined || a.name === null)
-    dogList = dogList.filter(a => a.name != undefined && a.name != null).sort((a, b) => b.name > a.name)
-    dogList = dogList.concat(dogsWithoutName);
-    dogList = dogList.sort()
-    renderDogs(dogList);
-    setState(dogList);
+    dogSorter((a, b) => b.name > a.name, a => a.name != undefined && a.name != null, a => a.name === undefined || a.name === null)
 }
+
 const showModalImageOfDogs=(modal,modalImg,captionText,imageOfDog) =>{
     imageOfDog.onclick = function () {
     modal.style.display = "block";
