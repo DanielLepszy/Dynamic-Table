@@ -47,8 +47,12 @@
             </tr>
         </tfoot>
     </table>
-    <div class="dog-image-container">
-
+    <div class="dog-image-container" onclick='modalImageOfDog()'>
+    </div>
+    <div id="myModal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="biggerImage">
+        <div id="caption"></div>
     </div>
 </body>
 <script>

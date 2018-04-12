@@ -71,7 +71,8 @@ const renderDogImage = (element) => {
         img.setAttribute("src", imageOfDogs[rowIndexButton].image);
         img.setAttribute("width", "340");
         img.setAttribute("height", "220");
-        img.setAttribute("alt", "The Pulpit Rock");
+        img.setAttribute("alt", imageOfDogs[rowIndexButton].race);
+        img.setAttribute("id", "currentImage");
 
         renderHtml(
             imageContainer,
@@ -150,15 +151,40 @@ const sortByFullNameAlphabetically = () => {
     setState(dogList);
 }
 const sortByFullNameNonAlphabetically = () => {
-    
-        let dogList = Object.values(getDogList(state));
-        let dogsWithoutName = dogList.filter(a => a.name === undefined || a.name === null)
-        dogList = dogList.filter(a => a.name != undefined && a.name != null).sort((a, b) => b.name > a.name)
-        dogList = dogList.concat(dogsWithoutName);
-        dogList = dogList.sort()
-        renderDogs(dogList);
-        setState(dogList);
+
+    let dogList = Object.values(getDogList(state));
+    let dogsWithoutName = dogList.filter(a => a.name === undefined || a.name === null)
+    dogList = dogList.filter(a => a.name != undefined && a.name != null).sort((a, b) => b.name > a.name)
+    dogList = dogList.concat(dogsWithoutName);
+    dogList = dogList.sort()
+    renderDogs(dogList);
+    setState(dogList);
+}
+const showModalImageOfDogs=(modal,modalImg,captionText,imageOfDog) =>{
+    imageOfDog.onclick = function () {
+    modal.style.display = "block";
+    modalImg.src = this.src;
+    captionText.innerHTML = this.alt;
+}
+}
+const hideModalImageOfDog = (modal) => {
+    var span = document.getElementsByClassName("close")[0];
+    span.onclick = function () {
+        modal.style.display = "none";
     }
+}
+const modalImageOfDog = () => {
+    var modal = document.getElementById('myModal');
+    var modalImg = document.getElementById("biggerImage")
+    var captionText = document.getElementById("caption");
+    const imageOfDog = document.getElementById('currentImage')
+
+    showModalImageOfDogs(modal,modalImg,captionText,imageOfDog);
+    hideModalImageOfDog(modal);
+}
+
+
+
 //There shouldn't be a need to modifiy code below.
 const run = () => {
 
