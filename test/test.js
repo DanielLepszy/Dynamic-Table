@@ -1,4 +1,4 @@
-const app = require("../js/main")
+const app = require("../js/renderDogs.js")
 
 var assert = require('assert');
 describe('Tests', function () {
