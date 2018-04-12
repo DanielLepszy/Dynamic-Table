@@ -1,20 +1,17 @@
 const parseData = (data) => {
     return data.map(dog => dog);
 }
-const helloTest = () => {
-    return "hello"
-}
 renderAgeLabel = (age) => {
-    if (age === null || age === undefined || age === "" || age === NaN) {
+    if (age === null || age === undefined || isNaN(age)) {
         return "";
     }
     return age;
 }
 renderAgeInYearLabel = (age) => {
-    if (age === null || age === undefined || age === "" || age === NaN) {
+    if (age === null || age === undefined || isNaN(age) || age <= 0) {
         return "";
     }
-    return (age / 12).toFixed(1);
+    return (age / 12).toFixed(2);
 }
 renderNameLabel = (dog) => {
     if (
@@ -168,15 +165,15 @@ const sortAscedning = () => {
 }
 const sortByFullNameAlphabetically = () => {
     dogSorter(
-        (a, b) => a.name > b.name, 
-        a => a.name != undefined && a.name != null, 
+        (a, b) => a.name > b.name,
+        a => a.name != undefined && a.name != null,
         a => a.name === undefined || a.name === null
     )
 }
 const sortByFullNameNonAlphabetically = () => {
     dogSorter(
-        (a, b) => b.name > a.name, 
-        a => a.name != undefined && a.name != null, 
+        (a, b) => b.name > a.name,
+        a => a.name != undefined && a.name != null,
         a => a.name === undefined || a.name === null
     )
 }
@@ -350,7 +347,8 @@ const setDogList =
         set(['dogList'])({}), //wrap to { dogList : any }
     )
 
-// exports._test = {
-//     helloTest: helloTest,
-//     renderNameLabel: renderNameLabel
-// }
+exports._test = {
+    renderNameLabel: renderNameLabel,
+    renderAgeLabel: renderAgeLabel,
+    renderAgeInYearLabel: renderAgeInYearLabel
+}

@@ -2,6 +2,80 @@ const app = require("../js/main")
 
 var assert = require('assert');
 describe('Tests', function () {
+  describe('renderAgeInYearLabel tests', function () {
+    it('Age is undefined', function () {
+
+      const result = app._test.renderAgeInYearLabel(undefined)
+      assert.equal(result, "")
+    })
+    it('Age is null', function () {
+      const result = app._test.renderAgeInYearLabel(null)
+      assert.equal(result, "")
+    })
+
+    it('Age is NaN', function () {
+      const result = app._test.renderAgeInYearLabel(NaN)
+      assert.equal(result, "")
+    })
+    it('Age is string', function () {
+      const result = app._test.renderAgeInYearLabel("string")
+      assert.equal(result, "")
+    })
+    it('Age is number', function () {
+      const result = app._test.renderAgeInYearLabel(22)
+      assert.equal(result, 1.83)
+    })
+
+    it('Age is number', function () {
+      const result = app._test.renderAgeInYearLabel(12)
+      assert.equal(result, 1)
+    })
+
+    it('Age is negative value', function () {
+      const result = app._test.renderAgeInYearLabel(-12)
+      assert.equal(result, "")
+    })
+
+    it('Age is less tnan 1', function () {
+      const result = app._test.renderAgeInYearLabel(0.4)
+      assert.equal(result, 0.03)
+    })
+
+    it('Age is empty object', function () {
+      const result = app._test.renderAgeInYearLabel({})
+      assert.equal(result, "")
+    })
+    it('Age is empty object', function () {
+      const result = app._test.renderAgeInYearLabel([])
+      assert.equal(result, "")
+    })
+  })
+
+  describe('renderAgeLabel tests', function () {
+    it('Age is undefined', function () {
+
+      const result = app._test.renderAgeLabel(undefined)
+      assert.equal(result, "")
+    })
+    it('Age is null', function () {
+      const result = app._test.renderAgeLabel(null)
+      assert.equal(result, "")
+    })
+
+    it('Age is NaN', function () {
+      const result = app._test.renderAgeLabel(NaN)
+      assert.equal(result, "")
+    })
+    it('Age is string', function () {
+      const result = app._test.renderAgeLabel("string")
+      assert.equal(result, "")
+    })
+    it('Age is number', function () {
+      const result = app._test.renderAgeLabel(22)
+      assert.equal(result, 22)
+    })
+  })
+
   describe('renderNameLabel tests', function () {
 
     it('Name and family name available', function () {
