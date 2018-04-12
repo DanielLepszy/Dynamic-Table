@@ -53,28 +53,31 @@ const renderDogs = (dogList) => {
 }
 
 const renderDogImage = (element) => {
-    // const rows = document.getElementsByTagName("table")[0].rows;
     const imageContainer = document.getElementsByClassName('dog-image-container')[0];
     const rowIndexButton = ((element.parentNode.parentNode.rowIndex) - 1);
-    const lala = Object.values(getDogList(state));
+    const imageOfDogs = Object.values(getDogList(state));
 
-    const setImage = () => {
-        if (lala[rowIndexButton].image === undefined || lala[rowIndexButton].image === null) {
-            return "We don't have a image of this dog. Sorry :("
-        } else {
-            return lala[rowIndexButton].image
-        }
+    if (imageOfDogs[rowIndexButton].image === undefined || imageOfDogs[rowIndexButton].image === null) {
+        const paragraph = document.createElement("P")
+        const contentOfParagraph = document.createTextNode("We don't have a image of this dog. Sorry :(")
+        paragraph.appendChild(contentOfParagraph);
+        renderHtml(
+            imageContainer,
+            paragraph.outerHTML
+        )
+    } else {
+
+        const img = document.createElement("IMG");
+        img.setAttribute("src", imageOfDogs[rowIndexButton].image);
+        img.setAttribute("width", "340");
+        img.setAttribute("height", "220");
+        img.setAttribute("alt", "The Pulpit Rock");
+
+        renderHtml(
+            imageContainer,
+            img.outerHTML
+        )
     }
-    const img = document.createElement("IMG");
-    img.setAttribute("src", setImage());
-    img.setAttribute("width", "340");
-    img.setAttribute("height", "220");
-    img.setAttribute("alt", "The Pulpit Rock");
-
-    renderHtml(
-        imageContainer,
-        img.outerHTML
-    )
 }
 const onAddDogButtonClick = (event) => {
 
