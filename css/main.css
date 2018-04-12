@@ -1,3 +1,8 @@
+body
+{
+    background-color:#E9E9E9;
+    padding: 20px;
+}
 .dogs-app {
     font-family: 'Courier New', Courier, monospace;
     display: flex;
@@ -7,6 +12,7 @@
 .main-title,
 .dog-image-container {
     align-self: center;
+    margin-bottom:20px;
 }
 
 .fixed-table {
