@@ -42,27 +42,35 @@ const renderDogs = (dogList) => {
         dogList.reduce((html, dog) =>
 
             `${html}
-            <tr>
-                <td>${renderNameLabel(dog)}</td>
+            <tr >
+                <td >${renderNameLabel(dog)}</td>
                 <td>${renderAgeLabel(dog.age)}</td>
                 <td>${renderAgeInYearLabel(dog.age)}</td>
                 <td>${dog.race}</td>
-                <td>${'<button onclick =renderDogImage()>Show Image</button>'}</td>
+                <td>${'<button onclick = renderDogImage(this)>Show Image</button>'}</td>
             </tr>`, '')
     );
 }
 
-const renderDogImage = (dog) => {
+const renderDogImage = (element) => {
+    // const rows = document.getElementsByTagName("table")[0].rows;
     const imageContainer = document.getElementsByClassName('dog-image-container')[0];
+    const rowIndexButton = ((element.parentNode.parentNode.rowIndex) - 1);
+    const lala = Object.values(getDogList(state));
 
+    const setImage = () => {
+        if (lala[rowIndexButton].image === undefined || lala[rowIndexButton].image === null) {
+            return "We don't have a image of this dog. Sorry :("
+        } else {
+            return lala[rowIndexButton].image
+        }
+    }
     const img = document.createElement("IMG");
-    img.setAttribute("src", "https://loremflickr.com/320/240/puppy");
+    img.setAttribute("src", setImage());
     img.setAttribute("width", "340");
     img.setAttribute("height", "220");
     img.setAttribute("alt", "The Pulpit Rock");
-    img.onload = function () {
-        console.log('s')
-    } // di
+
     renderHtml(
         imageContainer,
         img.outerHTML
@@ -80,27 +88,25 @@ const randomDog = () => {
     const arrayOfRandomDogsNames = ['Felix', 'Fennel', 'Stella', 'ChewChew', 'Slugger', 'Nymph', 'Baroque', 'Derby', 'CutiePie', 'Sauce'];
     const arrayOfFamilyDogNames = ['Sweet', 'von Haleson', 'of the city', 'Olive', 'Sprinkles', 'Kelby', 'Brandy', 'Sookie', 'Touchdown', 'Harley'];
     const arrayOfRaceDogs = ['Greyhound', 'Vizsla', 'Jack Russell Terrier', 'Borzoi', 'Weimaraner', 'Doberman', 'Dalmatian', 'Border Collie', 'Whippet', 'Saluki'];
-    const ageDogsInMonth = [14, 55, 96, 120, 12, 18, 64, 23, 45, 6]; // LOSOWANIE
+    const ageDogsInMonth = Math.floor(Math.random() * (150));
     const imageOfDog = [
-        'https://upload.wikimedia.org/wikipedia/commons/3/38/Greyhound_Racing_2_amk.jpg',
         'https://upload.wikimedia.org/wikipedia/commons/8/89/Vizsla_02.jpg',
-        'https://upload.wikimedia.org/wikipedia/commons/6/68/Szczenie_Jack_Russell_Terrier3.jpg',
-        'https://upload.wikimedia.org/wikipedia/commons/3/38/%C5%9Awierklaniec_wy%C5%9Bcigi_chart%C3%B3w_12.06.2010_borzoj_p4.jpg',
-        'https://upload.wikimedia.org/wikipedia/commons/b/ba/Wy%C5%BCe%C5%82_weimarski_profil_08.jpg',
-        'https://upload.wikimedia.org/wikipedia/commons/1/10/Dobermannhuendin.jpg',
-        'https://upload.wikimedia.org/wikipedia/commons/1/1c/Binka_10_06.jpg',
-        'https://upload.wikimedia.org/wikipedia/commons/b/be/Blue_merle_Border_Collie.jpg',
-        'https://upload.wikimedia.org/wikipedia/commons/5/5e/WhippetWhiteSaddled_wb.jpg',
-        'https://upload.wikimedia.org/wikipedia/commons/9/9a/Saluki_600.jpg'
-    ] // MALE ZDJECIA !
+        'http://www.normandie-tourisme.fr/docs/1815-5-chien-de-chasse.jpg',
+        'https://i.woman-day.info/wp-content/uploads/shchenok1-340x220.jpg',
+        'http://www.adruby.com/files/styles/category-image/public/image-ads/hyundai-anteater-dog-polar-cow-print-0001.jpg?itok=uXleTPoK',
+        'https://viralchop.com/wp-content/uploads/2017/10/maxresdefault-1447-340x220.jpg',
+        'https://itsadoggiething.com/wp-content/uploads/2017/12/doberman-3023037_640-340x220.jpg',
+        'http://dalmatian-drug.narod.ru/images/fotos/Markiz/Markiz_1god_1copy2.jpg',
+        'https://thelatest.co.uk/files/2016/07/4-4-340x220.jpg',
+        'https://galtx-centex.org/img/lily2.jpg'
+    ]
     const getRandomIndexFromArray = (selecetedArray) => {
         return Math.floor(Math.random() * (selecetedArray.length));
     }
     let indexOfImageAndRaceOfDog = getRandomIndexFromArray(arrayOfRaceDogs);
-    // BURDEL LOSOWANIE INDEKSOW
     const randomNameDog = arrayOfRandomDogsNames[getRandomIndexFromArray(arrayOfRandomDogsNames)];
     const randomFamilyNameDog = arrayOfFamilyDogNames[getRandomIndexFromArray(arrayOfFamilyDogNames)];
-    const randomAgeDogsInMonth = ageDogsInMonth[getRandomIndexFromArray(ageDogsInMonth)];
+    const randomAgeDogsInMonth = ageDogsInMonth;
     const randomraceDogs = arrayOfRaceDogs[getRandomIndexFromArray(arrayOfRaceDogs)];
     const randomImageOfDog = imageOfDog[getRandomIndexFromArray(imageOfDog)];
 
@@ -113,30 +119,20 @@ const randomDog = () => {
     }, ];
     return data
 }
-// 
-// function compare(a, b) {
-//     let comparison = 0;
-//     if (a.age > b.age) {
-//         comparison = 1;
-//     } else if (a.age < b.age) {
-//         comparison = -1;
-//     }
-//     return comparison;
-// }
 const sortAscedning = () => {
     let dogList = Object.values(getDogList(state));
     let dogsWithoutAge = dogList.filter(a => a.age === undefined || a.age === null)
     dogList = dogList.filter(a => a.age != undefined && a.age != null).sort((a, b) => a.age > b.age)
     dogList = dogList.concat(dogsWithoutAge);
-    console.log(dogList)
     renderDogs(dogList);
     setState(dogList);
 }
 const sortDescending = () => {
 
     let dogList = Object.values(getDogList(state));
-    dogList.sort((a, b) => a.age < b.age)
-    console.log(dogList)
+    let dogsWithoutAge = dogList.filter(a => a.age === undefined || a.age === null)
+    dogList = dogList.filter(a => a.age != undefined && a.age != null).sort((a, b) => a.age < b.age)
+    dogList = dogList.concat(dogsWithoutAge);
     renderDogs(dogList);
     setState(dogList);
 }
