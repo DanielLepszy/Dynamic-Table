@@ -31,6 +31,10 @@
     transform: rotate(9deg); 
     
 }
-/* #loading {
-    background: transparent url('http://thinkfuture.com/wp-content/uploads/2013/10/loading_spinner.gif') center no-repeat;
-  } */
+@media screen and (min-width:1px) and (max-width: 940px) {  
+ 
+    .dog-image-container:nth-of-type(2){
+        display:none;
+       
+    }
+}
