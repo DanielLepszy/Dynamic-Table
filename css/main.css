@@ -4,7 +4,8 @@
     flex-flow: column;
 }
 
-.main-title {
+.main-title,
+.dog-image-container {
     align-self: center;
 }
 
@@ -21,14 +22,10 @@
 .fixed-table tr:nth-child(odd) {
     background-color: #ffe4e1;
 }
-.arrow-select
-{
-    display:flex;
-    flex-direction: row;
-}
-.dog-image-container
+
+/* .dog-image-container
 {
     width:340px;
     height:220px;
     border : 1px solid black;
-}
+} */

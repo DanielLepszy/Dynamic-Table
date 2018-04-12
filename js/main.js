@@ -91,7 +91,7 @@ const randomDog = () => {
     const arrayOfRandomDogsNames = ['Felix', 'Fennel', 'Stella', 'ChewChew', 'Slugger', 'Nymph', 'Baroque', 'Derby', 'CutiePie', 'Sauce'];
     const arrayOfFamilyDogNames = ['Sweet', 'von Haleson', 'of the city', 'Olive', 'Sprinkles', 'Kelby', 'Brandy', 'Sookie', 'Touchdown', 'Harley'];
     const arrayOfRaceDogs = ['Greyhound', 'Vizsla', 'Jack Russell Terrier', 'Borzoi', 'Weimaraner', 'Doberman', 'Dalmatian', 'Border Collie', 'Whippet', 'Saluki'];
-    const ageDogsInMonth = Math.floor(Math.random() * (150));
+    const ageDogsInMonth = Math.floor((Math.random() * 150) + 1);
     const imageOfDog = [
         'https://upload.wikimedia.org/wikipedia/commons/8/89/Vizsla_02.jpg',
         'http://www.normandie-tourisme.fr/docs/1815-5-chien-de-chasse.jpg',
@@ -139,8 +139,26 @@ const sortDescending = () => {
     renderDogs(dogList);
     setState(dogList);
 }
+const sortByFullNameAlphabetically = () => {
 
-
+    let dogList = Object.values(getDogList(state));
+    let dogsWithoutName = dogList.filter(a => a.name === undefined || a.name === null)
+    dogList = dogList.filter(a => a.name != undefined && a.name != null).sort((a, b) => a.name > b.name)
+    dogList = dogList.concat(dogsWithoutName);
+    dogList = dogList.sort()
+    renderDogs(dogList);
+    setState(dogList);
+}
+const sortByFullNameNonAlphabetically = () => {
+    
+        let dogList = Object.values(getDogList(state));
+        let dogsWithoutName = dogList.filter(a => a.name === undefined || a.name === null)
+        dogList = dogList.filter(a => a.name != undefined && a.name != null).sort((a, b) => b.name > a.name)
+        dogList = dogList.concat(dogsWithoutName);
+        dogList = dogList.sort()
+        renderDogs(dogList);
+        setState(dogList);
+    }
 //There shouldn't be a need to modifiy code below.
 const run = () => {
 
