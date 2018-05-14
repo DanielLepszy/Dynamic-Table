@@ -15,7 +15,6 @@ After a while user decided that some new data is needed
 
 ### State ###
 
-User wants random dogs to be added to the list, 
 * After clicking "Add a dog" button - dog will be different each time, durign refresing list
 
 ### Actions and dom ###
